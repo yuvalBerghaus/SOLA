@@ -12,10 +12,12 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.view.menu.MenuView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -52,6 +54,15 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.CustomView
         LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
         View view = layoutInflater.inflate(R.layout.item, parent, false);
         return new CustomViewHolder(view);
+    }
+    // method for filtering our recyclerview items.
+    public void filterList(ArrayList<Movie> filterlist) {
+        // below line is to add our filtered
+        // list in our course array list.
+        dataList = filterlist;
+        // below line is to notify our adapter
+        // as change in recycler view data.
+        notifyDataSetChanged();
     }
 
     @Override
