@@ -9,6 +9,10 @@ import android.util.Log;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.Date;
 import java.util.List;
 
 import retrofit2.Call;
@@ -49,6 +53,8 @@ public class MainActivity extends AppCompatActivity {
                 assert response.body() != null;
                 movieList = response.body().getResults();
                 Log.d("movies", movieList.get(0).getTitle());
+                //Sorting by date
+                DateSorter.getInstance().sort_descending_date(movieList);
                 generateDataList(movieList);
 //                Log.d("response", "d");
             }
@@ -59,6 +65,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+
     /*Method to generate List of data using RecyclerView with custom adapter*/
     private void generateDataList(List<Movie> movies) {
         recyclerView = findViewById(R.id.recyclerview);
